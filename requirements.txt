@@ -1,3 +1,6 @@
-ruSpam >= 0.3.4
-SQLAlchemy == 2.0.36
 aiogram == 3.15.0
+greenlet ~= 3.1.1
+huggingface_hub[cli]
+SQLAlchemy == 2.0.36
+torch ~= 2.5.1
+transformers ~= 4.47.0
