@@ -15,6 +15,6 @@ SQLALCHEMY_DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}
 EOF
 
 echo "config.py создан с данными для подключения к БД."
-
+chmod +rw config.py
 # Запуск основного приложения
 exec python bot.py
