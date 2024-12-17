@@ -3,7 +3,7 @@ version: "3.8"
 services:
   bot:
     build:
-      context: ./bot
+      context: .
       args:
         HF_TOKEN: ${HF_TOKEN}
     container_name: python_bot
@@ -13,7 +13,7 @@ services:
       - postgres_db
       - huggingface-cli
     volumes:
-      - ./bot:/app
+      - .:/app
     command: []
 
   huggingface-cli:
