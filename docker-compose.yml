@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  bot:
+    build:
+      context: ./bot
+      args:
+        HF_TOKEN: ${HF_TOKEN}
+    container_name: python_bot
+    restart: always
+    env_file: .env
+    depends_on:
+      - postgres_db
+      - huggingface-cli
+    volumes:
+      - ./bot:/app
+    command: []
+
+  huggingface-cli:
+    image: huggingface/transformers-pytorch-cpu # Официальный образ Hugging Face
+    container_name: huggingface_cli
+    volumes:
+      - ./huggingface:/models # Место для сохранения моделей
+    entrypoint: ["huggingface-cli"]
+
+  postgres_db:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_DB: bot_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  pgdata:
